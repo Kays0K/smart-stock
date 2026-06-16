@@ -1,0 +1,38 @@
+
+###
+
+GET http://localhost:3000/produtos
+
+###
+
+POST http://localhost:3000/produtos
+Content-Type: application/json
+
+{
+    "nome": "Arroz Integral 5kg",
+    "categoria": "Alimentos",
+    "preco_custo": 14.50,
+    "preco_venda": 22.90,
+    "estoque_minimo": 15
+}
+
+###
+
+PUT http://localhost:3000/produtos/4
+Content-Type: application/json
+
+{
+    "nome": "Arroz Integral 10kg",
+    "categoria": "Alimentos",
+    "preco_custo": 20.50,
+    "preco_venda": 28.90,
+    "estoque_minimo": 5
+}
+
+###
+
+GET http://localhost:3000/produtos/4
+
+###
+
+DELETE http://localhost:3000/produtos/5
