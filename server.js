@@ -2,7 +2,7 @@ import Fastify from 'fastify'
 import { Pool } from 'pg'
 import cors from '@fastify/cors'
 import 'dotenv/config';
-import produtosRoutes from './rotas/produtos.js'
+import produtosRotas from './rotas/produtos.js'
 
 const sql = new Pool({
     user: "kayson",
@@ -16,7 +16,7 @@ const servidor = Fastify()
 
 servidor.decorate('sql', sql)
 
-servidor.register(produtosRoutes)
+servidor.register(produtosRotas)
 
 servidor.register(cors, {
     origin: '*',

@@ -11,8 +11,46 @@ Content-Type: application/json
 {
     "nome": "Arroz Integral 5kg",
     "categoria": "Alimentos",
-    "preco_custo": 14.50,
+    "preco_custo": -1,
     "preco_venda": 22.90,
+    "estoque_minimo": 15
+}
+
+###
+
+POST http://localhost:3000/produtos
+Content-Type: application/json
+
+{
+    "nome": "Feij]ão 5kg",
+    "categoria": "Alimentos",
+    "preco_custo": 15.50,
+    "preco_venda": 25.90,
+    "estoque_minimo": 15
+}
+
+###
+
+POST http://localhost:3000/produtos
+Content-Type: application/json
+
+{
+    "nome": "Arroz 5Kg",
+    "categoria": "Alimentos",
+    "preco_custo": 10.50,
+    "preco_venda": 16.90,
+    "estoque_minimo": 15
+}
+###
+
+POST http://localhost:3000/produtos
+Content-Type: application/json
+
+{
+    "nome": "Trigo 5kg",
+    "categoria": "Alimentos",
+    "preco_custo": 8.50,
+    "preco_venda": 15.90,
     "estoque_minimo": 15
 }
 
@@ -36,3 +74,7 @@ GET http://localhost:3000/produtos/4
 ###
 
 DELETE http://localhost:3000/produtos/5
+
+###
+
+GET http://localhost:3000/categoria

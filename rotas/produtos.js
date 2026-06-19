@@ -1,4 +1,4 @@
-export default async function produtosRoutes(servidor, options) {
+export default async function produtosRotas(servidor, options) {
 
     const sql = servidor.sql;
 
@@ -9,10 +9,18 @@ export default async function produtosRoutes(servidor, options) {
         const preco_venda = request.body.preco_venda;
         const estoque_minimo = request.body.estoque_minimo;
 
-        if (!nome || !categoria || !preco_custo || !preco_venda || estoque_minimo === undefined) {
+        if (!nome || !categoria || !preco_custo || !preco_venda || !estoque_minimo) {
             return reply.status(400).send({ error: "Todos os campos são obrigatórios!" });
         }
-
+        if(preco_custo < 0){
+            return reply.status(400).send({ error: "Preco de custo deve ser maior que 0!" });
+        }
+        if(preco_venda < 0){
+            return reply.status(400).send({ error: "Preco de venda deve ser maior que 0!" });
+        }
+        if(estoque_minimo < 0){
+            return reply.status(400).send({ error: "Estoque minimo deve ser maior que 0!" });
+        }
         const query = `
             INSERT INTO Produtos (nome, categoria, preco_custo, preco_venda, estoque_minimo) 
             VALUES ($1, $2, $3, $4, $5);
@@ -59,13 +67,13 @@ export default async function produtosRoutes(servidor, options) {
         const existe = await sql.query('SELECT * FROM Produtos WHERE id = $1', [id])
 
         if (existe.rows.length === 0) {
-            reply.status(400).send({
+            return reply.status(400).send({
                 error: `Produto com o id: ${id} não existe`
             })
         }
 
         const resultado = await sql.query('UPDATE Produtos SET nome = $1, categoria = $2, preco_custo = $3 , preco_venda = $4, estoque_minimo = $5 WHERE id = $6', [ nome, categoria, preco_custo, preco_venda, estoque_minimo, id])
-        reply.status(200).send({ message: "Produto editado com sucesso!" })
+        return reply.status(200).send({ message: "Produto editado com sucesso!" })
     })
 
     servidor.delete('/produtos/:id', async (request, reply) => {
@@ -74,12 +82,12 @@ export default async function produtosRoutes(servidor, options) {
     const existe = await sql.query('SELECT * FROM Produtos WHERE id = $1', [id])
 
         if (existe.rows.length === 0) {
-            reply.status(400).send({
-                error: `Produto com o id: ${id} não existe`
+            return reply.status(400).send({
+                error: `Produto com o id: ${id} não existe!`
             })
         }
 
     const resultado = await sql.query('DELETE FROM Produtos WHERE id = $1', [id])      
-    reply.send({ message: "Produto deletado com sucesso!" }).status(204)
+    return reply.send({ message: "Produto deletado com sucesso!" }).status(200)
 })
 }
