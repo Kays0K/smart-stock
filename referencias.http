@@ -78,3 +78,22 @@ DELETE http://localhost:3000/produtos/5
 ###
 
 GET http://localhost:3000/categoria
+
+###
+
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+    "email": "admin@smartstock.com",
+    "senha": "admin123"
+}
+
+###
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+    "email": "operador@smartstock.com",
+    "senha": "operador123"
+}

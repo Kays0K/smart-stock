@@ -17,7 +17,7 @@ CREATE TABLE Produtos (
 
 CREATE TABLE Lotes (
     id SERIAL PRIMARY KEY,
-    produto_id INTEGER REFERENCES Produtos(id), 
+    produto_id INTEGER REFERENCES Produtos(id) ON DELETE CASCADE, 
     quantidade_inicial INTEGER,
     quantidade_atual INTEGER,
     data_fabricacao DATE,
