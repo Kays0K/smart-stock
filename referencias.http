@@ -1,10 +1,10 @@
-
 ###
-
+//ROTA GET: Apenas mostra os produtos;
 GET http://localhost:3000/produtos
 
 ###
 
+//ROTA POST: Apenas registra um produto no banco.
 POST http://localhost:3000/produtos
 Content-Type: application/json
 
@@ -18,6 +18,7 @@ Content-Type: application/json
 
 ###
 
+//ROTA POST: Apenas registra mais um produto no banco.
 POST http://localhost:3000/produtos
 Content-Type: application/json
 
@@ -31,6 +32,7 @@ Content-Type: application/json
 
 ###
 
+//ROTA POST: Apenas registra mais um produto no banco.
 POST http://localhost:3000/produtos
 Content-Type: application/json
 
@@ -43,6 +45,7 @@ Content-Type: application/json
 }
 ###
 
+//ROTA POST: Apenas registra mais um produto no banco.
 POST http://localhost:3000/produtos
 Content-Type: application/json
 
@@ -56,6 +59,7 @@ Content-Type: application/json
 
 ###
 
+//ROTA PUT: Apenas edita um produto no banco.
 PUT http://localhost:3000/produtos/4
 Content-Type: application/json
 
@@ -69,18 +73,22 @@ Content-Type: application/json
 
 ###
 
+//ROTA GET: Apenas mostra um produto com base no seu id.
 GET http://localhost:3000/produtos/4
 
 ###
 
+//ROTA DELETE: Apenas deleta um produto com base no seu id.
 DELETE http://localhost:3000/produtos/5
 
 ###
 
+//ROTA GET: Esta aqui é so uma rota que não existe.
 GET http://localhost:3000/categoria
 
 ###
 
+//ROTA POST: Esta aqui é uma rota de login com administrador.
 POST http://localhost:3000/login
 Content-Type: application/json
 
@@ -90,10 +98,39 @@ Content-Type: application/json
 }
 
 ###
+
+//ROTA POST: Esta aqui é uma rota de login com operador.
 POST http://localhost:3000/login
 Content-Type: application/json
 
 {
     "email": "operador@smartstock.com",
     "senha": "operador123"
+}
+
+###
+
+//ROTA POST: Esta serve para criar um lote no banco.
+POST http://localhost:3000/lotes
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidGlwb191c3VhcmlvIjoiT1BFUkFET1IiLCJpYXQiOjE3ODI0ODY3MzIsImV4cCI6MTc4MjUxNTUzMn0.7DGYdI4ENUyqLxtkHh7Mv_nKL9AJqlk1zHQhrhflsNc
+
+{
+    "produto_id": 6,
+    "quantidade_inicial": 100,
+    "data_fabricacao": "2026-01-10",
+    "data_validade": "2026-12-10"
+}
+
+###
+
+//ROTA POST: Esta serve para criar uma movimentação no banco.
+POST http://localhost:3000/movimentacoes/saida
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidGlwb191c3VhcmlvIjoiT1BFUkFET1IiLCJpYXQiOjE3ODI0ODY3MzIsImV4cCI6MTc4MjUxNTUzMn0.7DGYdI4ENUyqLxtkHh7Mv_nKL9AJqlk1zHQhrhflsNc
+
+{
+    "produto_id": 6,
+    "quantidade": 30,
+    "tipo_movimentacao": "VENDA"
 }

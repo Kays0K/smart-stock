@@ -1,0 +1,23 @@
+ O FEFO é uma das siglas mais importantes quando o assunto é gestão de estoque inteligente, principalmente no varejo (como supermercados, farmácias ou mercearias).
+
+Significa First Expired, First Out (em português: Primeiro que Vence, Primeiro que Sai).
+
+Como funciona na prática?
+Esqueça a ordem em que as mercadorias chegaram ao galpão. O foco total é a data de validade.
+
+Imagine o seguinte cenário no seu banco de dados para o produto "Leite Caixinha":
+
+Lote 1: Chegou na semana passada, tem 50 caixas, mas vence em 15/12/2026.
+
+Lote 2: Chegou hoje (uma oportunidade de promoção do fornecedor), tem 50 caixas, mas vence mais cedo, em 20/09/2026.
+
+Se um cliente passar no caixa e comprar 10 caixas de leite:
+
+Se usássemos o FIFO (First In, First Out - Primeiro que Entra, Primeiro que Sai), o sistema daria baixa no Lote 1, porque ele chegou primeiro. O Lote 2 ficaria correndo o risco de vencer na prateleira.
+
+Como usamos o FEFO, o sistema olha para as validades. Como 20/09/2026 (Lote 2) vem antes de 15/12/2026 (Lote 1), a API consome automaticamente as 10 caixas do Lote 2.
+
+Por que isso é o "cérebro" do SmartStock?
+Reduz o Desperdício: Garante matematicamente que o comerciante venda primeiro o que vai estragar primeiro. Menos produto jogado no lixo.
+
+Automação pro Lojista: O operador de caixa não precisa abrir o sistema e escolher manualmente o lote ou ficar lendo letrinha miúda de validade. Ele só registra a quantidade vendida, e o seu back-end (com aquela query inteligente rodando o ORDER BY data_validade ASC) faz o cálculo e queima o estoque do lote certo.
